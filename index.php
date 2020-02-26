@@ -4,20 +4,28 @@
 
   </head>
   <body>
+    <h1>Map Look-up</h1>
+    <h4>Enter an address below to find it on the map:</h4>
+    <input type="text" id="place" name="place">
+    <button onclick="findPlace()">Search</button>
+    <br><br>
     <div id="map"></div>
-    <button onclick="GetMap('2122 E 3735 S, Salt Lake City, UT 84109')">Search</button>
 
     <script>
     var map, searchManager;
 
-    function GetMap() {
+    function findPlace() {
+      var place = document.getElementById("place").value;
+      geocodeQuery(place);
+    }
+
+    function GetMap(place) {
         document.getElementById("map").style ="position:relative;width:600px;height:400px;"
         map = new Microsoft.Maps.Map('#map', {
             credentials: 'Atn3TLqF4jxVBfIIpaun5EM05I1_ZCUQLy2eQCL3pqgcAgVg7Ge-kYzis8ReSfuJ'
         });
 
         //Make a request
-        geocodeQuery("2122 E 3735 S, Salt Lake City, UT 84109");
     }
 
     function geocodeQuery(query) {
@@ -42,7 +50,7 @@
                 },
                 errorCallback: function (e) {
                     //If there is an error, alert the user about it.
-                    alert("No results found.");
+                    //alert("No results found.");
                 }
             };
 
@@ -51,6 +59,6 @@
         }
     }
     </script>
-    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol' async defer></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
   </body>
 </html>
