@@ -10,6 +10,7 @@
     <button onclick="findPlace()">Search</button>
     <br><br>
     <div id="map"></div>
+    <p> <a href="https://github.com/showmaker0/cp2">Github repoistory</a> </p>
 
     <script>
     var map, searchManager;
